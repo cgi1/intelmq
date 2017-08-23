@@ -1,3 +1,6 @@
+If you wanted to look at the 1.0.0 tag, please refer to the tag: https://github.com/certtools/intelmq/tree/1.0.0
+This branch is here for compatibility with wrongly posted URLs, please do not use it as base for pull requests etc.
+
 ===================
 Welcome to IntelMQ!
 ===================
