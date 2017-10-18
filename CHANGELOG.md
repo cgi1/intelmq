@@ -42,6 +42,8 @@ Support for Python 3.3 has been dropped, it reached its end of life.
   - It is possible to filter the data before processing them using the new parameters `filter_type` and `filter_text`.
   - It is possible to specify multiple coulmns using `|` character in parameter `columns`.
   - The parameter `time_format` now supports `'epoch_millis'` for seconds since the Epoch, milliseconds are supported but not used.
+- renamed `bots.parsers.cymru_full_bogons.parser` to `bots.parsers.cymru.full_bogons`, compatibility shim will be removed in version 2.0
+- added `bots.parsers.cymru.cap_program`
 
 ### Requirements
 - Requests is no longer listed as dependency of the core. For depending bots the requirement is noted in their REQUIREMENTS.txt file
