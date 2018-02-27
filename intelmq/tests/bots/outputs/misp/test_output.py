@@ -5,19 +5,36 @@ import unittest
 import intelmq.lib.test as test
 from intelmq.bots.outputs.misp.output import MispOutputBot
 
-INPUT1 = {"__type": "Event",
-          "classification.type": "botnet drone",
-          "source.asn": 64496,
-          "source.ip": "192.0.2.1",
-          "feed.name": "Example Feed",
-          "extra": '{"foo.bar": "test"}'
-          }
-OUTPUT1 = {'classification': {'type': 'botnet drone'},
-           'extra': {"foo": {"bar": "test"}},
-           'feed': {'name': 'Example Feed'},
-           'source': {'asn': 64496, 'ip': '192.0.2.1'},
-           }
 
+INPUT1 = {"__type": "Event",
+          "source.ip": "75.127.10.159",
+          "source.fqdn": "www.appleid.apple.com.service-mamang-secure.tk",
+          "source.geolocation.longitude": -78.8781,
+          "source.asn": 36352,
+          "feed.accuracy": 100.0,
+          "time.observation": "2018-02-27T08:47:13+00:00",
+          "time.source": "2018-02-27T09:47:09+00:00",
+          "source.geolocation.cc": "US",
+          "source.geolocation.city": "Buffalo",
+          "source.geolocation.latitude": 42.8864,
+          "feed.name": "CertStream",
+          "source.network": "75.127.10.0/23"
+          }
+
+OUTPUT1 = {"__type": "Event",
+          "source.ip": "75.127.10.159",
+          "source.fqdn": "www.appleid.apple.com.service-mamang-secure.tk",
+          "source.geolocation.longitude": -78.8781,
+          "source.asn": 36352,
+          "feed.accuracy": 100.0,
+          "time.observation": "2018-02-27T08:47:13+00:00",
+          "time.source": "2018-02-27T09:47:09+00:00",
+          "source.geolocation.cc": "US",
+          "source.geolocation.city": "Buffalo",
+          "source.geolocation.latitude": 42.8864,
+          "feed.name": "CertStream",
+          "source.network": "75.127.10.0/23"
+          }
 
 class TestMispOutputBot(test.BotTestCase, unittest.TestCase):
 
@@ -25,15 +42,6 @@ class TestMispOutputBot(test.BotTestCase, unittest.TestCase):
     def set_bot(cls):
         cls.bot_reference = MispOutputBot
         cls.default_input_message = INPUT1
-        cls.sysconfig = {"collection": "events",
-                         "database": "tests",
-                         "host": "localhost",
-                         "port": 27017,
-                         "hierarchical_output": True}
-        if not os.environ.get('INTELMQ_TEST_DATABASES'):
-            return
-        cls.con = pymongo.MongoClient()
-        cls.db = cls.con['tests']
 
     def test_event(self):
         self.run_bot()
