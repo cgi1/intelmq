@@ -29,7 +29,7 @@ class CertstreamCollectorBot(CollectorBot):
 
     def send_update(self, message):
 
-        # self.logger.debug("Received new certificate update.")
+        #self.logger.debug("Received new certificate update.")
         report = Report()
 
         if message['message_type'] == 'heartbeat':
@@ -37,7 +37,7 @@ class CertstreamCollectorBot(CollectorBot):
 
         if message['message_type'] == 'certificate_update':
             new_report = self.new_report()
-            new_report.add("feed.name", "Certstream")
+            #new_report.add("feed.name", "Certstream")
             new_report.add("raw", json.dumps(message))
 
             self.send_message(new_report)

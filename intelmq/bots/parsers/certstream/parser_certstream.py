@@ -31,7 +31,7 @@ class CertStreamParserBot(Bot):
         data = json_report['data']
 
         event = self.new_event(report)
-        event.add('raw', raw_report)
+        #event.add('raw', raw_report)
 
         if 'seen' in data:
             event.add('time.source', datetime.datetime.fromtimestamp(int(data['seen'])).strftime('%Y-%m-%d %H:%M:%S UTC'))
@@ -44,10 +44,10 @@ class CertStreamParserBot(Bot):
                 for domain in data['leaf_cert']['all_domains']:
 
                     try:
-                        event.add('source.fqdn', domain, force=True)
+                        event.add('source.fqdn', domain)
                     except exceptions.InvalidValue:
                         if validators.ipv4(domain):
-                            event.add('source.ip', domain, force=True)
+                            event.add('source.ip', domain)
                         else:
                             self.logger.debug("Invalid value (%s) in all_domains field. Not a valid ipv4 or domain." % domain)
                     except:
