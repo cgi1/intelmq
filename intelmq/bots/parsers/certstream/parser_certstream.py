@@ -57,8 +57,10 @@ class CertStreamParserBot(Bot):
 
         if 'chain' in data:
             for chain_element in data['chain']:
-                pass  # ToDo: Add chains
+                pass # ToDo: Add chains
 
         self.acknowledge_message()
+
+
 
 BOT = CertStreamParserBot
