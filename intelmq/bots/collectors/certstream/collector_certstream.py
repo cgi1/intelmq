@@ -13,13 +13,14 @@ import certstream
 
 from intelmq.lib.bot import Bot
 from intelmq.lib.message import Report
+from intelmq.lib.bot import CollectorBot
 
 
-class CertstreamCollectorBot(Bot):
+class CertstreamCollectorBot(CollectorBot):
 
     def init(self):
 
-        self.logger.debug("Nothing to init.")
+        return
 
     def callback(self, message, context=None):  # callback handler for certstream events.
         CertstreamCollectorBot.send_update(message=message, self=self)
@@ -44,6 +45,4 @@ class CertstreamCollectorBot(Bot):
             self.logger.debug("Send certificate_update.")
 
 
-if __name__ == "__main__":
-    bot = CertstreamCollectorBot(sys.argv[1])
-    bot.start()
+BOT = CertstreamCollectorBot
